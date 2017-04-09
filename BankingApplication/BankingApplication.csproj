@@ -42,8 +42,14 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Classes\OutputOnConsole.cs" />
+    <Compile Include="Classes\OutputOnFile.cs" />
+    <Compile Include="Classes\OutputOnPrinter.cs" />
     <Compile Include="Classes\Transaction.cs" />
     <Compile Include="Client\BankApp.cs" />
+    <Compile Include="Enums\OutputType.cs" />
+    <Compile Include="Factory\OutputFactory.cs" />
+    <Compile Include="Interfaces\IOutput.cs" />
     <Compile Include="Enums\AccountType.cs" />
     <Compile Include="Enums\TransactionStatus.cs" />
     <Compile Include="Enums\TransactionType.cs" />

@@ -5,7 +5,7 @@ namespace BankingApplication.Factory
 {
     public static class AccountFactory
     {
-        public static BaseAccount GetAccount(AccountType accountType)
+        public static BaseAccount GetInstance(AccountType accountType)
         {
             switch (accountType)
             {

@@ -1,6 +1,7 @@
 ﻿using BankingApplication.Classes;
 using BankingApplication.Enums;
 using BankingApplication.Factory;
+using BankingApplication.Interfaces;
 using System;
 using System.Collections.Generic;
 
@@ -8,6 +9,13 @@ namespace BankingApplication.Client
 {
     public class BankApp
     {
+        IOutput output;
+
+        public BankApp()
+        {
+            output = OutputFactory.GetInstance(OutputType.Console);
+        }
+
         public void StartApp()
         {
             double depositAmount = 200;
@@ -15,14 +23,14 @@ namespace BankingApplication.Client
             string customerName = "Roshan Kumar Singh";
 
             // Getting the account based on Factory Pattern.
-            BaseAccount account = AccountFactory.GetAccount(AccountType.Checkings);
+            BaseAccount account = AccountFactory.GetInstance(AccountType.Checkings);
             account.CustomerName = customerName;
 
             // Initialize
             account.Initialize();
 
-            Console.WriteLine("Account details for: " + customerName);
-            Console.WriteLine();
+            output.Print("Account details for: " + customerName);
+            output.Print("");
 
             // Deposit
             Deposit(account, depositAmount / 1);
@@ -53,11 +61,11 @@ namespace BankingApplication.Client
 
         private void DisplayTransactions(IEnumerable<Transaction> transactions)
         {
-            Console.WriteLine("Posted Date \t Description \t\t\t\t Type \t\t Status \t Amount \t Balance");
-            Console.WriteLine("------------------------------------------------------------------------------------------------------------------------");
+            output.Print("Posted Date \t Description \t\t\t\t Type \t\t Status \t Amount \t Balance");
+            output.Print("------------------------------------------------------------------------------------------------------------------------");
             foreach (var transaction in transactions)
             {
-                Console.WriteLine(transaction.PostedDate.ToShortDateString() + " \t " + transaction.Description + " \t\t\t\t " + transaction.Type + " \t " + transaction.Status + " \t " + transaction.Amount + " \t\t " + transaction.Balance);
+                output.Print(transaction.PostedDate.ToShortDateString() + " \t " + transaction.Description + " \t\t\t\t " + transaction.Type + " \t " + transaction.Status + " \t " + transaction.Amount + " \t\t " + transaction.Balance);
             }
         }
     }
