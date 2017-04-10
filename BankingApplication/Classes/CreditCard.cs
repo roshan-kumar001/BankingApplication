@@ -5,11 +5,6 @@ namespace BankingApplication.Classes
 {
     class CreditCard : BaseAccount
     {
-        public override void Initialize()
-        {
-
-        }
-
         public override bool Withdraw(double amount)
         {
             if ((Balance - amount) < 0)

@@ -13,9 +13,12 @@ namespace BankingApplication.Classes
         public BaseAccount()
         {
             transactions = new List<Transaction>();
+            Initialize();
         }
 
-        public abstract void Initialize();
+        public virtual void Initialize()
+        {
+        }
 
         public abstract bool Withdraw(double amount);
 

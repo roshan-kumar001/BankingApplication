@@ -11,6 +11,7 @@ namespace BankingApplication.Client
     {
         IOutput output;
 
+        // Here, we can inject the OutputType using Dependency Inject. Constructor injection.
         public BankApp()
         {
             output = OutputFactory.GetInstance(OutputType.Console);
@@ -26,11 +27,8 @@ namespace BankingApplication.Client
             BaseAccount account = AccountFactory.GetInstance(AccountType.Checkings);
             account.CustomerName = customerName;
 
-            // Initialize
-            account.Initialize();
-
-            output.Print("Account details for: " + customerName);
-            output.Print("");
+            output.Print("Account details for: " + account.CustomerName);
+            output.Print();
 
             // Deposit
             Deposit(account, depositAmount / 1);
